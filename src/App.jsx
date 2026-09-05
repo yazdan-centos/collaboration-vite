@@ -1,25 +1,9 @@
-import { useState, useEffect } from "react";
+import { lazy, Suspense, useState, useEffect } from "react";
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { flatNavItems } from "./data/dashboardData";
 import Sidebar from "./components/Sidebar";
 import TopHeader from "./components/TopHeader";
 import BackgroundGlow from "./components/BackgroundGlow";
-import ClientsPage from "./pages/clients/ClientsPage";
-import CustomerTicketPage from "./pages/tickets/CustomerTicketPage";
-import DashboardPage from "./pages/dashboard/DashboardPage";
-import MeetingsPage from "./pages/meetings/MeetingsPage";
-import ProjectsPage from "./pages/projects/ProjectsPage";
-import SettingsPage from "./pages/settings/SettingsPage";
-import UserPermissionsPage from "./pages/users/UserPermissionsPage";
-import UserManagementPage from "./pages/users/UserManagementPage";
-import IconGalleryPage from "./pages/shared/IconGalleryPage";
-import SlaContractEdit from "./pages/sla/SlaContractEdit";
-import SlaContractsPage from "./pages/sla/SlaContractsPage";
-import TasksPage from "./pages/tasks/TasksPage";
-import TeamPage from "./pages/team/TeamPage";
-import TicketChatPage from "./pages/tickets/TicketChatPage";
-import TicketCreatePage from "./pages/tickets/TicketCreatePage";
-import TicketPage from "./pages/tickets/TicketPage";
 import Login from "./components/auth/Login";
 import ProtectedRoute from "./components/routing/ProtectedRoute";
 import { hasRole, USER_ROLES } from "./utils/authorization";
@@ -27,8 +11,25 @@ import { useAuth } from "./context/AuthContext";
 import "./App.css";
 import RoleRoute from "./components/routing/RoleRoute";
 import { ManagerRoute } from "./components/routing/RoleRoute";
-import ApplicationGuide from "./pages/applicationGuide/ApplicationGuide.jsx";
-import {CalendarPage} from "./pages";
+
+const ApplicationGuide = lazy(() => import("./pages/applicationGuide/ApplicationGuide.jsx"));
+const CalendarPage = lazy(() => import("./pages/calendar/CalendarPage"));
+const ClientsPage = lazy(() => import("./pages/clients/ClientsPage"));
+const CustomerTicketPage = lazy(() => import("./pages/tickets/CustomerTicketPage"));
+const DashboardPage = lazy(() => import("./pages/dashboard/DashboardPage"));
+const IconGalleryPage = lazy(() => import("./pages/shared/IconGalleryPage"));
+const MeetingsPage = lazy(() => import("./pages/meetings/MeetingsPage"));
+const ProjectsPage = lazy(() => import("./pages/projects/ProjectsPage"));
+const SettingsPage = lazy(() => import("./pages/settings/SettingsPage"));
+const SlaContractEdit = lazy(() => import("./pages/sla/SlaContractEdit"));
+const SlaContractsPage = lazy(() => import("./pages/sla/SlaContractsPage"));
+const TasksPage = lazy(() => import("./pages/tasks/TasksPage"));
+const TeamPage = lazy(() => import("./pages/team/TeamPage"));
+const TicketChatPage = lazy(() => import("./pages/tickets/TicketChatPage"));
+const TicketCreatePage = lazy(() => import("./pages/tickets/TicketCreatePage"));
+const TicketPage = lazy(() => import("./pages/tickets/TicketPage"));
+const UserManagementPage = lazy(() => import("./pages/users/UserManagementPage"));
+const UserPermissionsPage = lazy(() => import("./pages/users/UserPermissionsPage"));
 
 function ApplicationLayout() {
   const location = useLocation();
@@ -52,6 +53,30 @@ function ApplicationLayout() {
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
+
+  // وقتی سایدبار در موبایل باز است، اسکرول پشت آن قفل شود
+  useEffect(() => {
+    if (isMobile && sidebarOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMobile, sidebarOpen]);
+
+  // بستن سایدبار موبایل با کلید Escape
+  useEffect(() => {
+    if (!isMobile || !sidebarOpen) return;
+    function handleKeyDown(event) {
+      if (event.key === "Escape") {
+        setSidebarOpen(false);
+      }
+    }
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isMobile, sidebarOpen]);
 
   // عنوان صفحه و بردکرامب بر اساس مسیر فعلی از داده‌های منو استخراج می‌شود
   const isSlaEditPage = /^\/sla-contracts\/[^/]+\/edit$/.test(
@@ -83,6 +108,14 @@ function ApplicationLayout() {
         onNavigate={() => isMobile && setSidebarOpen(false)}
       />
 
+      {isMobile && sidebarOpen && (
+        <div
+          className="sidebar-overlay"
+          onClick={() => setSidebarOpen(false)}
+          aria-hidden="true"
+        />
+      )}
+
       <main className="main-content">
         <TopHeader
           pageTitle={pageTitle}
@@ -93,7 +126,8 @@ function ApplicationLayout() {
           onMenuToggleClick={() => setSidebarOpen((open) => !open)}
         />
 
-        <Routes>
+        <Suspense fallback={<div className="page-loading">در حال بارگذاری...</div>}>
+          <Routes>
           <Route index element={<Navigate to="/tickets" replace />} />
           <Route
             path="tasks"
@@ -237,7 +271,8 @@ function ApplicationLayout() {
             }
           />
           <Route path="*" element={<Navigate to="/tickets" replace />} />
-        </Routes>
+          </Routes>
+        </Suspense>
       </main>
     </>
   );
