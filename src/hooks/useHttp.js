@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { API_BASE_URL } from '../config/api';
-import { getStoredAccessToken } from '../context/AuthContext';
+import { getStoredAccessToken } from '../contexts/AuthContext';
 import { normalizeApiError } from '../utils/apiError';
 
 const http = axios.create({

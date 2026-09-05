@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import EmbeddedChat from '../../components/chat/EmbeddedChat';
-import ServerAsyncSelect from '../../components/form/ServerAsyncSelect';
+import ServerAsyncSelect from '../../components/forms/ServerAsyncSelect';
 import ticketService from '../../services/ticketService';
 import aghelifardAvatar from '../../assets/img/aghelifard.jpg';
 import amirBagherpourAvatar from '../../assets/img/amir_bagherpour.jpg';

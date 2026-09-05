@@ -4,7 +4,7 @@ import MeetingFormModal from '../../components/meetings/MeetingFormModal';
 import MeetingList from '../../components/meetings/MeetingList';
 import MeetingStats from '../../components/meetings/MeetingStats';
 import meetingService from '../../services/meetingService';
-import { useAuth } from '../../context/AuthContext';
+import { useAuth } from '../../contexts/AuthContext';
 import { getApiErrorMessage } from '../../utils/apiError';
 import { hasPermission, hasRole, USER_ROLES } from '../../utils/authorization';
 

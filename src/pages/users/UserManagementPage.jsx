@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { API_BASE_URL } from '../../config/api';
-import { useAuth } from '../../context/AuthContext';
+import { useAuth } from '../../contexts/AuthContext';
 import permissionsService from '../../services/permissionsService';
 import { getApiErrorMessage, getValidationMessage } from '../../utils/apiError';
 import { hasPermission } from '../../utils/authorization';

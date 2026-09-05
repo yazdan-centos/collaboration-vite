@@ -1,13 +1,13 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import StatsGrid from '../../components/StatsGrid';
-import TaskTable from '../../components/TaskTable';
-import DonutChart from '../../components/DonutChart';
-import ActivityList from '../../components/ActivityList';
+import StatsGrid from '../../components/tasks/StatsGrid';
+import TaskTable from '../../components/tasks/TaskTable';
+import DonutChart from '../../components/tasks/DonutChart';
+import ActivityList from '../../components/tasks/ActivityList';
 import taskService from '../../services/taskService';
 import { getApiErrorMessage, isCanceledRequest } from '../../utils/apiError';
-import TaskDetails from './TaskDetails';
-import TaskEditForm from './TaskEditForm';
-import { useAuth } from '../../context/AuthContext';
+import TaskDetails from '../../components/tasks/TaskDetails';
+import TaskEditForm from '../../components/tasks/TaskEditForm';
+import { useAuth } from '../../contexts/AuthContext';
 import { hasPermission } from '../../utils/authorization';
 
 const API_TO_UI_STATUS = {

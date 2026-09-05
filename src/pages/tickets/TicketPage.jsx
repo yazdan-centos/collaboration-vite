@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import TicketDetails from '../../components/TicketDetails';
+import TicketDetails from '../../components/tickets/TicketDetails';
 import ticketService from '../../services/ticketService';
-import {useAuth} from '../../context/AuthContext';
+import {useAuth} from '../../contexts/AuthContext';
 import {hasPermission, hasRole, USER_ROLES} from '../../utils/authorization';
 import {useNavigate} from 'react-router-dom';
 import {getApiErrorMessage} from '../../utils/apiError';

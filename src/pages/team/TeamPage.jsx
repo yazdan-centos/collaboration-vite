@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { API_BASE_URL } from '../../config/api';
-import { tasks } from '../../data/dashboardData';
+import { tasks } from '../../data/taskData';
 import teamMemberService from '../../services/teamMemberService';
 
 

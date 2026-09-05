@@ -1,18 +1,18 @@
 import { lazy, Suspense, useState, useEffect } from "react";
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
-import { flatNavItems } from "./data/dashboardData";
-import Sidebar from "./components/Sidebar";
-import TopHeader from "./components/TopHeader";
-import BackgroundGlow from "./components/BackgroundGlow";
-import Login from "./components/auth/Login";
+import { flatNavItems } from "./data/navigation";
+import Sidebar from "./components/layout/Sidebar";
+import TopHeader from "./components/layout/TopHeader";
+import BackgroundGlow from "./components/layout/BackgroundGlow";
+import LoginPage from "./pages/auth/LoginPage";
 import ProtectedRoute from "./components/routing/ProtectedRoute";
 import { hasRole, USER_ROLES } from "./utils/authorization";
-import { useAuth } from "./context/AuthContext";
+import { useAuth } from "./contexts/AuthContext";
 import "./App.css";
 import RoleRoute from "./components/routing/RoleRoute";
 import { ManagerRoute } from "./components/routing/RoleRoute";
 
-const ApplicationGuide = lazy(() => import("./pages/applicationGuide/ApplicationGuide.jsx"));
+const ApplicationGuide = lazy(() => import("./pages/application-guide/ApplicationGuide.jsx"));
 const ClientsPage = lazy(() => import("./pages/clients/ClientsPage"));
 const CustomerTicketPage = lazy(() => import("./pages/tickets/CustomerTicketPage"));
 const MeetingsPage = lazy(() => import("./pages/meetings/MeetingsPage"));
@@ -245,7 +245,7 @@ function ApplicationLayout() {
 export default function App() {
   return (
     <Routes>
-      <Route path="/login" element={<Login />} />
+      <Route path="/login" element={<LoginPage />} />
       <Route
         path="/*"
         element={

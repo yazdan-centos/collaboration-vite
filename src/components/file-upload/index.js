@@ -7,4 +7,4 @@ export {
   PreflightFileList,
   UploadedFilesList,
 } from './FileUploadManager';
-export { createFileUploadApi, createMockFileUploadApi } from './fileUploadApi';
+export { createFileUploadApi, createMockFileUploadApi } from '../../services/fileUploadService';

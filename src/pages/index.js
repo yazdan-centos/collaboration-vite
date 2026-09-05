@@ -1,5 +1,5 @@
 export { default as ClientsPage } from './clients/ClientsPage';
-export { default as DocumentsPage } from './applicationGuide/ApplicationGuide';
+export { default as ApplicationGuide } from './application-guide/ApplicationGuide';
 export { default as MeetingsPage } from './meetings/MeetingsPage';
 export { default as ProjectsPage } from './projects/ProjectsPage';
 export { default as ReportsPage } from './reports/ReportsPage';

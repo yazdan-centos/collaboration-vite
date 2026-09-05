@@ -1,10 +1,10 @@
 import { useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../../context/AuthContext';
+import { useAuth } from '../../contexts/AuthContext';
 import ticketService from '../../services/ticketService';
 import { hasRole, USER_ROLES } from '../../utils/authorization';
 import { getApiErrorMessage, getValidationMessage } from '../../utils/apiError';
-import ServerAsyncSelect from '../../components/form/ServerAsyncSelect';
+import ServerAsyncSelect from '../../components/forms/ServerAsyncSelect';
 import customerService from '../../services/customerService';
 import slaContractService from '../../services/slaContractService';
 

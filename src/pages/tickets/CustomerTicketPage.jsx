@@ -1,8 +1,8 @@
 import { useLocation } from 'react-router-dom';
 import React, { useEffect, useState, useCallback } from 'react';
-import { useAuth } from '../../context/AuthContext';
+import { useAuth } from '../../contexts/AuthContext';
 import ticketService from '../../services/ticketService';
-import TicketModal from '../../components/ticket/TicketModal';
+import TicketModal from '../../components/tickets/TicketModal';
 import { getApiErrorMessage } from '../../utils/apiError';
 import { hasPermission } from '../../utils/authorization';
 

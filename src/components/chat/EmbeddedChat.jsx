@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { useAuth } from '../../context/AuthContext';
+import { useAuth } from '../../contexts/AuthContext';
 import { fetchMessages, postMessage } from '../../services/chatService';
 import MessageBubble from './MessageBubble';
 import ChatInput from './ChatInput';
