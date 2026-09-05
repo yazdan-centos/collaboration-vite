@@ -1,11 +1,8 @@
-export { default as CalendarPage } from './calendar/CalendarPage';
 export { default as ClientsPage } from './clients/ClientsPage';
-export { default as DashboardPage } from './dashboard/DashboardPage';
 export { default as DocumentsPage } from './applicationGuide/ApplicationGuide';
 export { default as MeetingsPage } from './meetings/MeetingsPage';
 export { default as ProjectsPage } from './projects/ProjectsPage';
 export { default as ReportsPage } from './reports/ReportsPage';
-export { default as SettingsPage } from './settings/SettingsPage';
 export { default as UserPermissionsPage } from './users/UserPermissionsPage';
 export { default as SlaContractEdit } from './sla/SlaContractEdit';
 export { default as SlaContractsPage } from './sla/SlaContractsPage';

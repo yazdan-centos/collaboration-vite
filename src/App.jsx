@@ -13,14 +13,10 @@ import RoleRoute from "./components/routing/RoleRoute";
 import { ManagerRoute } from "./components/routing/RoleRoute";
 
 const ApplicationGuide = lazy(() => import("./pages/applicationGuide/ApplicationGuide.jsx"));
-const CalendarPage = lazy(() => import("./pages/calendar/CalendarPage"));
 const ClientsPage = lazy(() => import("./pages/clients/ClientsPage"));
 const CustomerTicketPage = lazy(() => import("./pages/tickets/CustomerTicketPage"));
-const DashboardPage = lazy(() => import("./pages/dashboard/DashboardPage"));
-const IconGalleryPage = lazy(() => import("./pages/shared/IconGalleryPage"));
 const MeetingsPage = lazy(() => import("./pages/meetings/MeetingsPage"));
 const ProjectsPage = lazy(() => import("./pages/projects/ProjectsPage"));
-const SettingsPage = lazy(() => import("./pages/settings/SettingsPage"));
 const SlaContractEdit = lazy(() => import("./pages/sla/SlaContractEdit"));
 const SlaContractsPage = lazy(() => import("./pages/sla/SlaContractsPage"));
 const TasksPage = lazy(() => import("./pages/tasks/TasksPage"));
@@ -170,26 +166,10 @@ function ApplicationLayout() {
             }
           />
           <Route
-            path="dashboard"
-            element={
-              <ManagerRoute>
-                <DashboardPage />
-              </ManagerRoute>
-            }
-          />
-          <Route
             path="projects"
             element={
               <ManagerRoute>
                 <ProjectsPage />
-              </ManagerRoute>
-            }
-          />
-          <Route
-            path="calendar"
-            element={
-              <ManagerRoute>
-                <CalendarPage />
               </ManagerRoute>
             }
           />
@@ -239,14 +219,6 @@ function ApplicationLayout() {
             }
           />
           <Route
-            path="settings"
-            element={
-              <ManagerRoute>
-                <SettingsPage />
-              </ManagerRoute>
-            }
-          />
-          <Route
             path="users"
             element={
               <RoleRoute roles={[USER_ROLES.TEAM_MANAGER]} permission="USER_READ">
@@ -260,14 +232,6 @@ function ApplicationLayout() {
               <ManagerRoute>
                 <UserPermissionsPage />
               </ManagerRoute>
-            }
-          />
-          <Route
-            path="icons"
-            element={
-              <RoleRoute roles={Object.values(USER_ROLES)}>
-                <IconGalleryPage />
-              </RoleRoute>
             }
           />
           <Route path="*" element={<Navigate to="/tickets" replace />} />

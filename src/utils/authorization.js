@@ -34,10 +34,6 @@ export const navigationItems = Object.freeze([
     roles: [USER_ROLES.TEAM_MEMBER, USER_ROLES.TEAM_MANAGER], permission: 'TASK_READ', badge: '۱۲',
   },
   {
-    key: 'dashboard', label: 'داشبورد', path: '/dashboard', icon: 'fas fa-gauge-high',
-    roles: [USER_ROLES.TEAM_MANAGER],
-  },
-  {
     key: 'sla-contracts', label: 'قراردادهای SLA', path: '/sla-contracts', icon: 'fas fa-file-contract',
     roles: [USER_ROLES.TEAM_MANAGER],
   },
@@ -54,10 +50,6 @@ export const navigationItems = Object.freeze([
     roles: [USER_ROLES.TEAM_MANAGER],
   },
   {
-    key: 'calendar', label: 'تقویم', path: '/calendar', icon: 'fas fa-calendar-days',
-    roles: [USER_ROLES.TEAM_MANAGER],
-  },
-  {
     key: 'meetings', label: 'جلسات تیمی', path: '/meetings', icon: 'fas fa-handshake',
     roles: [USER_ROLES.TEAM_MANAGER, USER_ROLES.TEAM_MEMBER], permission: 'MEETING_READ',
   },
@@ -68,14 +60,6 @@ export const navigationItems = Object.freeze([
   {
     key: 'applicationGuide', label: 'راهنمای برنامه', path: '/applicationGuide', icon: 'fas fa-file-alt',
     roles: [USER_ROLES.TEAM_MANAGER], badge: '۳', badgeColor: 'var(--warning)',
-  },
-  {
-    key: 'icons', label: 'گالری آیکون‌ها', path: '/icons', icon: 'fas fa-icons',
-    roles: Object.values(USER_ROLES),
-  },
-  {
-    key: 'settings', label: 'تنظیمات', path: '/settings', icon: 'fas fa-cog',
-    roles: [USER_ROLES.TEAM_MANAGER],
   },
 ]);
 

@@ -18,7 +18,7 @@ export default function TopHeader({
         <div>
           <div className="page-title">{pageTitle}</div>
           <div className="breadcrumb">
-            داشبورد <i className="fas fa-chevron-left" style={{ fontSize: '9px' }}></i>{' '}
+            سامانه <i className="fas fa-chevron-left" style={{ fontSize: '9px' }}></i>{' '}
             <span>{breadcrumbLabel}</span>
           </div>
         </div>

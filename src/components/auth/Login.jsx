@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
+import { useTheme } from '../../context/ThemeContext';
 import authService from '../../services/authService';
 import { getApiErrorMessage } from '../../utils/apiError';
 
@@ -19,6 +20,7 @@ export default function Login() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
   const { isAuthenticated, login } = useAuth();
+  const { isDark, toggleTheme } = useTheme();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -49,26 +51,40 @@ export default function Login() {
   }
 
   return (
-    <main dir="rtl" className="relative flex min-h-screen items-center justify-center overflow-hidden bg-slate-950 px-4 py-10 text-slate-100">
-      <div className="absolute -right-32 -top-32 h-96 w-96 rounded-full bg-emerald-500/10 blur-3xl" />
-      <div className="absolute -bottom-40 -left-32 h-96 w-96 rounded-full bg-cyan-500/10 blur-3xl" />
+    <main dir="rtl" className="login-page relative flex min-h-screen items-center justify-center overflow-hidden px-4 py-10">
+      <div className="login-glow login-glow-accent absolute -right-32 -top-32 h-96 w-96 rounded-full blur-3xl" />
+      <div className="login-glow login-glow-info absolute -bottom-40 -left-32 h-96 w-96 rounded-full blur-3xl" />
 
-      <section className="relative w-full max-w-md rounded-2xl border border-slate-700/70 bg-slate-900/90 p-7 shadow-2xl shadow-black/30 backdrop-blur-xl sm:p-9">
+      <button
+        type="button"
+        className={`theme-toggle login-theme-toggle${isDark ? ' dark' : ''}`}
+        onClick={toggleTheme}
+        role="switch"
+        aria-checked={!isDark}
+        aria-label={isDark ? 'فعال کردن حالت روشن' : 'فعال کردن حالت تاریک'}
+        title={isDark ? 'حالت روشن' : 'حالت تاریک'}
+      >
+        <i className="fas fa-sun" aria-hidden="true" />
+        <i className="fas fa-moon" aria-hidden="true" />
+        <span className="theme-toggle-thumb" />
+      </button>
+
+      <section className="login-card relative w-full max-w-md rounded-2xl p-7 backdrop-blur-xl sm:p-9">
         <div className="mb-8 text-center">
-          <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-400 to-emerald-600 text-xl text-white shadow-lg shadow-emerald-500/20">
+          <div className="login-brand-icon mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl text-xl text-white shadow-lg">
             <i className="fas fa-layer-group" aria-hidden="true" />
           </div>
           <h1 className="text-2xl font-extrabold">ورود به پنل مدیریت تیم</h1>
-          <p className="mt-2 text-sm text-slate-400">برای ادامه، اطلاعات حساب کاربری خود را وارد کنید.</p>
+          <p className="login-subtitle mt-2 text-sm">برای ادامه، اطلاعات حساب کاربری خود را وارد کنید.</p>
         </div>
 
         <form className="space-y-5" onSubmit={handleSubmit} noValidate>
           <label className="block">
-            <span className="mb-2 block text-sm font-semibold text-slate-300">ایمیل یا نام کاربری</span>
-            <div className="flex items-center gap-3 rounded-xl border border-slate-700 bg-slate-950/60 px-4 transition focus-within:border-emerald-500 focus-within:ring-2 focus-within:ring-emerald-500/10">
-              <i className="fas fa-user text-sm text-slate-500" aria-hidden="true" />
+            <span className="login-label mb-2 block text-sm font-semibold">ایمیل یا نام کاربری</span>
+            <div className="login-field flex items-center gap-3 rounded-xl border px-4 transition">
+              <i className="login-field-icon fas fa-user text-sm" aria-hidden="true" />
               <input
-                className="h-12 w-full bg-transparent text-sm text-slate-100 outline-none placeholder:text-slate-600"
+                className="login-input h-12 w-full bg-transparent text-sm outline-none"
                 autoComplete="username"
                 value={identifier}
                 onChange={(event) => setIdentifier(event.target.value)}
@@ -79,13 +95,13 @@ export default function Login() {
           </label>
 
           <div className="block">
-            <label htmlFor="login-password" className="mb-2 block text-sm font-semibold text-slate-300">رمز عبور</label>
-            <div className="flex items-center gap-3 rounded-xl border border-slate-700 bg-slate-950/60 px-4 transition focus-within:border-emerald-500 focus-within:ring-2 focus-within:ring-emerald-500/10">
-              <i className="fas fa-lock text-sm text-slate-500" aria-hidden="true" />
+            <label htmlFor="login-password" className="login-label mb-2 block text-sm font-semibold">رمز عبور</label>
+            <div className="login-field flex items-center gap-3 rounded-xl border px-4 transition">
+              <i className="login-field-icon fas fa-lock text-sm" aria-hidden="true" />
               <input
                 id="login-password"
                 type={showPassword ? 'text' : 'password'}
-                className="h-12 w-full bg-transparent text-sm text-slate-100 outline-none placeholder:text-slate-600"
+                className="login-input h-12 w-full bg-transparent text-sm outline-none"
                 autoComplete="current-password"
                 value={password}
                 onChange={(event) => setPassword(event.target.value)}
@@ -94,7 +110,7 @@ export default function Login() {
               />
               <button
                 type="button"
-                className="flex h-9 w-9 shrink-0 items-center justify-center text-slate-500 transition hover:text-emerald-400 focus:outline-none focus:text-emerald-400 disabled:cursor-not-allowed disabled:opacity-50"
+                className="login-password-toggle flex h-9 w-9 shrink-0 items-center justify-center transition focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
                 onClick={() => setShowPassword((visible) => !visible)}
                 aria-label={showPassword ? 'پنهان کردن رمز عبور' : 'نمایش رمز عبور'}
                 aria-pressed={showPassword}
@@ -107,7 +123,7 @@ export default function Login() {
           </div>
 
           {error && (
-            <div role="alert" className="flex items-start gap-2 rounded-xl border border-red-500/20 bg-red-500/10 px-4 py-3 text-sm text-red-300">
+            <div role="alert" className="login-error flex items-start gap-2 rounded-xl border px-4 py-3 text-sm">
               <i className="fas fa-circle-exclamation mt-0.5" aria-hidden="true" />
               <span>{error}</span>
             </div>
@@ -116,7 +132,7 @@ export default function Login() {
           <button
             type="submit"
             disabled={isLoading}
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-emerald-500 text-sm font-bold text-white shadow-lg shadow-emerald-500/15 transition hover:bg-emerald-400 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:ring-offset-2 focus:ring-offset-slate-900 disabled:cursor-not-allowed disabled:opacity-60"
+            className="login-submit flex h-12 w-full items-center justify-center gap-2 rounded-xl text-sm font-bold text-white shadow-lg transition focus:outline-none disabled:cursor-not-allowed disabled:opacity-60"
           >
             <i className={isLoading ? 'fas fa-spinner fa-spin' : 'fas fa-right-to-bracket'} aria-hidden="true" />
             {isLoading ? 'در حال ورود...' : 'ورود به پنل'}

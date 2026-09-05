@@ -53,13 +53,6 @@ const guideSections = [
     description: 'ابزارهای مدیریتی برای پایش عملکرد، ساختار تیم و تعهدات خدمت‌رسانی.',
     items: [
       {
-        title: 'داشبورد',
-        path: '/dashboard',
-        icon: 'fas fa-gauge-high',
-        tone: 'green',
-        description: 'نمای کلی شاخص‌ها، وضعیت فعالیت‌ها و اطلاعات مهم مدیریتی.',
-      },
-      {
         title: 'قراردادهای SLA',
         path: '/sla-contracts',
         icon: 'fas fa-file-contract',
@@ -99,36 +92,15 @@ const guideSections = [
   {
     id: 'tools',
     eyebrow: 'ابزارهای تکمیلی',
-    title: 'برنامه‌ریزی و تنظیمات سامانه',
-    description: 'دسترسی به ابزارهای جانبی و تنظیمات موردنیاز برای استفاده بهتر از برنامه.',
+    title: 'ابزارهای تکمیلی سامانه',
+    description: 'دسترسی به ابزارهای جانبی موردنیاز برای استفاده بهتر از برنامه.',
     items: [
-      {
-        title: 'تقویم',
-        path: '/calendar',
-        icon: 'fas fa-calendar-days',
-        tone: 'cyan',
-        description: 'مرور زمانی رویدادها، برنامه‌ها و فعالیت‌های ثبت‌شده.',
-      },
       {
         title: 'پروژه‌ها',
         path: '/projects',
         icon: 'fas fa-diagram-project',
         tone: 'purple',
         description: 'دسته‌بندی و مرور فعالیت‌های مرتبط با پروژه‌های سازمان.',
-      },
-      {
-        title: 'تنظیمات',
-        path: '/settings',
-        icon: 'fas fa-cog',
-        tone: 'amber',
-        description: 'تنظیم ظاهر، ترجیحات و گزینه‌های عمومی حساب کاربری.',
-      },
-      {
-        title: 'گالری آیکون‌ها',
-        path: '/icons',
-        icon: 'fas fa-icons',
-        tone: 'green',
-        description: 'مرجع آیکون‌های قابل استفاده در بخش‌های مختلف رابط کاربری.',
       },
     ],
   },

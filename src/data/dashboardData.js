@@ -167,12 +167,10 @@ export const navSections = [
  {
   title: 'منوی اصلی',
   items: [
-    { icon: 'fas fa-gauge-high', label: 'داشبورد', path: '/dashboard' },
     { icon: 'fas fa-ticket', label: 'تیکت‌ها', path: '/tickets', badge: '۱۲' },
     { icon: 'fas fa-list-check', label: 'تسک‌ها', path: '/tasks', badge: '۱۲' },
     { icon: 'fas fa-diagram-project', label: 'پروژه‌ها', path: '/projects' },
     { icon: 'fas fa-file-contract', label: 'قراردادهای SLA', path: '/sla-contracts' },
-    { icon: 'fas fa-calendar-days', label: 'تقویم', path: '/calendar' },
     { icon: 'fas fa-handshake', label: 'جلسات تیمی', path: '/meetings' },
     { icon: 'fas fa-chart-column', label: 'چتروم تیکت', path: '/reports' },
   ]
@@ -184,8 +182,6 @@ export const navSections = [
       { icon: 'fas fa-users', label: 'تیم', path: '/team' },
       { icon: 'fas fa-clients', label: 'مشتریان', path: '/clients' },
     { icon: 'fas fa-file-alt', label: 'راهنمای برنامه', path: '/applicationGuide', badge: '۳', badgeColor: 'var(--warning)' },
-    { icon: 'fas fa-icons', label: 'گالری آیکون‌ها', path: '/icons' },
-      { icon: 'fas fa-cog', label: 'تنظیمات', path: '/settings' },
     ],
   },
 ];
